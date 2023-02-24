@@ -141,3 +141,20 @@ chmod ug+x .git/hooks/*
 <hr/>
 
 ### Please connect with me on Twitter [@shindesan2012](https://twitter.com/shindesan2012) & [https://blog.santoshshinde.com](https://blog.santoshshinde.com/)
+
+## Prisma
+
+### To generate prisma client
+Whenever you make changes to your Prisma schema in the future, you manually need to invoke prisma generate in order to accommodate the changes in your Prisma Client API.
+```
+npx prisma generate
+```
+
+### To run migrations
+Note: generate is called under the hood by default, after running prisma migrate dev. If the prisma-client-js generator is defined in your schema, this will check if @prisma/client is installed and install it if it's missing.
+```
+npx prisma migrate dev --name init
+```
+
+### Example
+See: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/querying-the-database-typescript-postgres
