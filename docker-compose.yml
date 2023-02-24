@@ -9,3 +9,11 @@ services:
         - /usr/app/node_modules
       ports:
         - "3146:3146"
+
+    db:
+      image: postgres
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: example
+        POSTGRES_USER: testtest
+        POSTGRES_DB: theinvitate
