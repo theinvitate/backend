@@ -17,3 +17,5 @@ services:
         POSTGRES_PASSWORD: example
         POSTGRES_USER: testtest
         POSTGRES_DB: theinvitate
+      ports:
+        - "5432:5432"
