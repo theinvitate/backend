@@ -18,13 +18,6 @@ export default class SystemStatusController extends BaseApi {
 	/**
 	 *
 	 */
-	constructor() {
-		super();
-	}
-
-	/**
-	 *
-	 */
 	public register(): Router {
 		this.router.get('/system', this.getSystemInfo.bind(this));
 		this.router.get('/time', this.getServerTime.bind(this));
