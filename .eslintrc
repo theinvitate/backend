@@ -12,11 +12,24 @@
     "ecmaVersion": 2018,
     "project": "./tsconfig.json"
   },
-  "plugins": ["prettier"],
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
-    "prettier/prettier": ["off", { "singleQuote": true }],
-    "semi": ["error", "always"],
-    "object-curly-spacing": ["error", "always"],
+    "prettier/prettier": [
+      "off",
+      {
+        "singleQuote": true
+      }
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
     "camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": 1,
@@ -29,14 +42,29 @@
     "no-underscore-dangle": "off",
     "no-shadow": "off",
     "no-new": 0,
-    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
     "@typescript-eslint/no-unused-vars": "warn",
-    "quotes": [2, "single", { "avoidEscape": true }],
+    "import/prefer-default-export": "warn",
+    "quotes": [
+      2,
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
     "class-methods-use-this": "off",
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index"
+        ],
         "alphabetize": {
           "order": "asc"
         }

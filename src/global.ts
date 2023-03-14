@@ -6,6 +6,6 @@ declare global {
 	var environment: Environment;
 }
 
-export default function setGlobalEnvironment(environment: Environment): void {
+export const setGlobalEnvironment = (environment: Environment): void => {
 	global.environment = environment;
-}
+};
