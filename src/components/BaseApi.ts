@@ -9,7 +9,7 @@ import logger from '../lib/logger';
 export default abstract class BaseApi {
 	protected router: Router;
 
-	protected constructor() {
+	constructor() {
 		this.router = Router();
 	}
 
