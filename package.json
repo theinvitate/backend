@@ -21,6 +21,7 @@
     "test:custom": "npm test --  tests/unit-tests/environments/environment.spec.ts",
     "precommit": "npm run lint-fix && npm run pretty",
     "prepush": "npm run lint ",
+    "seed": "ts-node prisma/seed.ts",
     "test": "NODE_ENV=test jest --coverage",
     "test:watch": "jest --watch"
   },
