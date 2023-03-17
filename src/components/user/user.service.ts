@@ -1,6 +1,5 @@
 import { env } from 'process';
 import bcrypt from 'bcryptjs';
-import * as crypto from 'crypto-js';
 import jwt from 'jsonwebtoken';
 import { db } from '../../db.server';
 import utils from '../../utils';
@@ -49,9 +48,10 @@ export const signUpUser = async (
 	utils.isPasswordSafe(user.password);
 	const password = await bcrypt.hash(user.password, 8);
 
-	const validateEmailToken = crypto.randomBytes(64).toString('hex');
+	const validateEmailToken = await bcrypt.hash(user.email, 8);
+	console.log(user);
 
-	const createdUser = db.user.create({
+	const createdUser = await db.user.create({
 		data: {
 			firstName: user.firstName,
 			lastName: user.lastName,

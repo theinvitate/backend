@@ -72,7 +72,6 @@ model User {
   phoneNSN                 String
   phoneNumber              String
   firstName                String
-  middleName               String?
   lastName                 String
   password                 String
   lastLogin                DateTime?

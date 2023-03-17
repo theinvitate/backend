@@ -19,7 +19,6 @@ const utils = {
 	hasNumber(string: string) {
 		return /\d/.test(string);
 	},
-
 	hasSpecialChar(str: string) {
 		const format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
 		if (format.test(str)) {
@@ -27,7 +26,6 @@ const utils = {
 		}
 		return false;
 	},
-
 	isPasswordLongEnough(password: string) {
 		if (password.length >= 6) {
 			return true;
@@ -35,7 +33,6 @@ const utils = {
 
 		return false;
 	},
-
 	isPasswordSafe: (password: string) => {
 		if (
 			// utils.isPasswordLongEnough(password) &&

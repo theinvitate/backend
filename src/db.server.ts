@@ -1,5 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 
-const db = global.__db || new PrismaClient();
+/* eslint-disable import/no-mutable-exports */
+let db = null;
+
+if (!db) {
+	db = new PrismaClient();
+}
 
 export { db };
+/* eslint-enable import/no-mutable-exports */
