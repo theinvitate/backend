@@ -104,12 +104,13 @@ async function seed() {
     )
 }
 
-seed().catch(e => {
-    console.log(e);
-    process.exit(1)
-}).finally(() => {
-    db.$disconnect();
-});
+seed();
+// .catch(e => {
+//     console.log(e);
+//     process.exit(1)
+// }).finally(() => {
+//     db.$disconnect();
+// });
 
 function getUsers(): Array<User> {
     return [
