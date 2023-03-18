@@ -162,7 +162,8 @@ See: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/
 
 
 ## Debug Project
-At the run and debug tab of vscode, click create launch.json file. Then copy the code lines below instead of created one.
+At the run and debug tab of vscode, click create launch.json file. Then copy the code lines below instead of created one.<br />
+```
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
@@ -190,3 +191,4 @@ At the run and debug tab of vscode, click create launch.json file. Then copy the
         }
     ]
 }
+```
