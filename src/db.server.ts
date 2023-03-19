@@ -1,11 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 
-/* eslint-disable import/no-mutable-exports */
-let db = null;
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-if (!db) {
-	db = new PrismaClient();
-}
+export const db =
+	globalForPrisma.prisma ||
+	new PrismaClient({
+		log: ['query'],
+	});
 
-export { db };
-/* eslint-enable import/no-mutable-exports */
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;

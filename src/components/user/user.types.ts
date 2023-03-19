@@ -1,15 +1,23 @@
-export interface IUser {
+export interface IGetUserDto {
 	id: string;
 	firstName: string;
 	lastName: string;
 	phoneNSN: string;
 	phoneNumber: string;
 	email: string;
-	password: string;
 	createdAt: Date;
 }
 
+export interface ICreateUserDto {
+	firstName: string;
+	lastName: string;
+	phoneNSN: string;
+	phoneNumber: string;
+	email: string;
+	password: string;
+}
+
 export interface ISignUpResponse {
-	user: IUser;
+	user: IGetUserDto;
 	token: string;
 }

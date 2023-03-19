@@ -3,9 +3,9 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { db } from '../../db.server';
 import utils from '../../utils';
-import { ISignUpResponse, IUser } from './user.types';
+import { ICreateUserDto, ISignUpResponse, IGetUserDto } from './user.types';
 
-export const listUsers = async (): Promise<IUser[]> =>
+export const listUsers = async (): Promise<IGetUserDto[]> =>
 	db.user.findMany({
 		select: {
 			id: true,
@@ -18,7 +18,7 @@ export const listUsers = async (): Promise<IUser[]> =>
 		},
 	});
 
-export const getUser = async (id: string): Promise<IUser> =>
+export const getUser = async (id: string): Promise<IGetUserDto> =>
 	db.user.findUnique({
 		where: {
 			id,
@@ -35,7 +35,7 @@ export const getUser = async (id: string): Promise<IUser> =>
 	});
 
 export const signUpUser = async (
-	user: Omit<IUser, 'id'>,
+	user: ICreateUserDto,
 ): Promise<ISignUpResponse> => {
 	const userTest = await db.user.findUnique({
 		where: {
