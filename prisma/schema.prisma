@@ -11,8 +11,8 @@ datasource db {
 }
 
 model Country {
-  id        String     @id
-  name      String
+  id   String @id
+  name String
 
   provinces Province[]
   addresses Address[]
@@ -22,21 +22,21 @@ model Province {
   id   Int    @id @default(autoincrement())
   name String
 
-  country   Country    @relation(fields: [countryId], references: [id])
+  country   Country @relation(fields: [countryId], references: [id])
   countryId String
 
-  districtes  District[]
-  addresses   Address[]
+  districtes District[]
+  addresses  Address[]
 }
 
 model District {
   id   Int    @id @default(autoincrement())
   name String
 
-  province   Province  @relation(fields: [provinceId], references: [id])
+  province   Province @relation(fields: [provinceId], references: [id])
   provinceId Int
 
-  addresses    Address[]
+  addresses Address[]
 }
 
 model Address {
@@ -67,15 +67,19 @@ model Address {
 }
 
 model User {
-  id         String    @id @default(uuid())
-  email      String    @unique
-  phoneNSN String
-  phoneNumber String
-  firstName  String
-  middleName String?
-  lastName   String
-  password   String
-  addresses  Address[]
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  id                       String    @id @default(uuid())
+  email                    String    @unique
+  phoneNSN                 String
+  phoneNumber              String
+  firstName                String
+  lastName                 String
+  password                 String
+  lastLogin                DateTime?
+  resetPasswordToken       String
+  dateResetPasswordRequest DateTime?
+  validateEmailToken       String
+  isEmailValidated         Boolean
+  addresses                Address[]
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
 }
