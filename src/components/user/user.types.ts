@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export interface IGetUserDto {
 	id: string;
 	firstName: string;
@@ -18,6 +20,6 @@ export interface ICreateUserDto {
 }
 
 export interface ISignUpResponse {
-	user: IGetUserDto;
+	user: User;
 	token: string;
 }
