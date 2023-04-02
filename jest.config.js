@@ -10,4 +10,7 @@ module.exports = {
   collectCoverage: true,
   testEnvironment: 'node',
   setupFiles: ['dotenv/config'],
+  testEnvironmentVariables: {
+    DATABASE_URL: 'postgresql://testtest:example@localhost:5432/theinvitate?schema=public'
+  }
 };
