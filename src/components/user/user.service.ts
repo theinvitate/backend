@@ -2,7 +2,7 @@ import { env } from 'process';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { db } from '../../db.server';
-import utils from '../../utils';
+import utils from '../../utils/passwordUtils';
 import { ICreateUserDto, ISignUpResponse, IGetUserDto } from './user.types';
 
 export const listUsers = async (): Promise<IGetUserDto[]> =>

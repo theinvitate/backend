@@ -11,11 +11,11 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
   },
   "include": [
     "src/**/*.ts",
-    "index.js",
+    "index.ts",
     "config/*.config.js" // for *.config.js files
   ],
   "exclude": [

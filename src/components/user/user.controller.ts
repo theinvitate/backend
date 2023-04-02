@@ -1,11 +1,15 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import auth from '../../middleware/auth';
+import { AuthRequest } from '../../middleware/interfaces/auth-types';
 import BaseApi from '../BaseApi';
 import * as UserService from './user.service';
+import { ICreateUserDto } from './user.types';
 
 export default class UserController extends BaseApi {
 	public register(): Router {
 		this.router.get('/', this.getUserList.bind(this));
-		this.router.get('/:id', this.getUser.bind(this));
+		this.router.get('/me', auth, this.getSignedInUser.bind(this));
+		this.router.get('/:id', auth, this.getUser.bind(this));
 		this.router.post('/signup', this.signUpUser.bind(this));
 		this.router.post('/login', this.loginUser.bind(this));
 		return this.router;
@@ -38,7 +42,7 @@ export default class UserController extends BaseApi {
 	 * @param next
 	 */
 	public async getUser(
-		req: Request,
+		req: AuthRequest,
 		res: Response,
 		next: NextFunction,
 	): Promise<void> {
@@ -46,7 +50,27 @@ export default class UserController extends BaseApi {
 			const user = await UserService.getUser(req.params.id);
 			if (user) {
 				res.locals.data = user;
-				// call base class method
+				return super.send(res);
+			}
+			return super.send(res, 404);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	/**
+	 * @param req
+	 * @param res
+	 * @param next
+	 */
+	public async getSignedInUser(
+		req: AuthRequest,
+		res: Response,
+		next: NextFunction,
+	): Promise<void> {
+		try {
+			if (req.user) {
+				res.locals.data = req.user;
 				return super.send(res);
 			}
 			return super.send(res, 404);
@@ -66,14 +90,19 @@ export default class UserController extends BaseApi {
 		next: NextFunction,
 	): Promise<void> {
 		try {
-			const user = await UserService.signUpUser(req.body);
+			const user = await UserService.signUpUser(
+				req.body as ICreateUserDto,
+			);
 			if (user) {
 				res.locals.data = user;
 				// call base class method
-				return super.send(res);
+				return super.send(res, 201);
 			}
 			return super.send(res, 400);
 		} catch (err) {
+			if (err.message === 'User Already exists') {
+				return super.send(res, 400);
+			}
 			next(err);
 		}
 	}
@@ -100,6 +129,12 @@ export default class UserController extends BaseApi {
 			}
 			return super.send(res, 400);
 		} catch (err) {
+			if (
+				err.message === 'No user' ||
+				err.message === 'Invalid password'
+			) {
+				return super.send(res, 400);
+			}
 			next(err);
 		}
 	}
