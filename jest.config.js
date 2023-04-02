@@ -11,6 +11,6 @@ module.exports = {
   testEnvironment: 'node',
   setupFiles: ['dotenv/config'],
   testEnvironmentVariables: {
-    DATABASE_URL: 'postgresql://testtest:example@localhost:5432/theinvitate?schema=public'
+    DATABASE_URL: 'postgresql://testtest:example@localhost:5433/theinvitate?schema=public'
   }
 };

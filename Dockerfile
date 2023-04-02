@@ -1,7 +1,8 @@
 FROM node 
-WORKDIR /node-boilerplate 
+WORKDIR /usr/app/
 COPY package.json . 
 RUN npm install 
+RUN npx prisma generate
 COPY . . 
-EXPOSE 8080 
+EXPOSE 3146 
 CMD npm start

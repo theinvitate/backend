@@ -18,12 +18,18 @@ describe('users endpoints', () => {
 
     beforeAll(async () => {
         app = await IntegrationHelpers.getApp();
-
-        await db.user.delete({
+        const testUser = await db.user.findUnique({
             where: {
-                email: 'test@test.com',
+                email: 'test@test.com'
             }
-        })
+        });
+        if (testUser) {
+            await db.user.delete({
+                where: {
+                    email: 'test@test.com',
+                }
+            })
+        }
     });
 
     afterAll(async () => {
