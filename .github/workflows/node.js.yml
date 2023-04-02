@@ -21,6 +21,20 @@ jobs:
         # node-version: [10.x, 12.x, 14.x]
         node-version: [14.x]
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: testtest
+          POSTGRES_PASSWORD: example
+          POSTGRES_DB: theinvitate
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -37,6 +51,8 @@ jobs:
     - name: Build
       run: npm run build --if-present
     - name: Test
-      run: npm run test
+      run: |
+        npx prisma db push
+        npm run test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
