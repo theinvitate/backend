@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import auth from '../../middleware/auth';
 import { AuthRequest } from '../../middleware/interfaces/auth-types';
+import { validateLogin, validateSignUp } from '../../validators/user-validations';
 import BaseApi from '../BaseApi';
 import * as UserService from './user.service';
 import { ICreateUserDto } from './user.types';
-import { validateLogin, validateSignUp } from '../../validators/user-validations';
 
 export default class UserController extends BaseApi {
 	public register(): Router {
