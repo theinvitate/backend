@@ -4,6 +4,7 @@ import { AuthRequest } from '../../middleware/interfaces/auth-types';
 import BaseApi from '../BaseApi';
 import * as UserService from './user.service';
 import { ICreateUserDto } from './user.types';
+import { validateLogin, validateSignUp } from '../../validators/user-validations';
 
 export default class UserController extends BaseApi {
 	public register(): Router {
@@ -90,6 +91,11 @@ export default class UserController extends BaseApi {
 		next: NextFunction,
 	): Promise<void> {
 		try {
+			const { error, value } = validateSignUp(req.body);
+			if (error) {
+				res.locals.data = error.details;
+				return super.send(res, 400);
+			}
 			const user = await UserService.signUpUser(
 				req.body as ICreateUserDto,
 			);
@@ -118,6 +124,10 @@ export default class UserController extends BaseApi {
 		next: NextFunction,
 	): Promise<void> {
 		try {
+			const { error, value } = validateLogin(req.body);
+			if (error) {
+				return super.send(res, 400);
+			}
 			const user = await UserService.loginUser(
 				req.body.email,
 				req.body.password,
