@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+ <html lang="tr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
+ 
+ <head>
+ 	<meta charset="UTF-8">
+ 	<meta name="viewport" content="width=device-width,initial-scale=1">
+ 	<meta name="x-apple-disable-message-reformatting">
+ 	<title></title>
+ 	<!--[if mso]>
+    	<noscript>
+    		<xml>
+    			<o:OfficeDocumentSettings>
+    				 <o:AllowPNG/>
+    				<o:PixelsPerInch>96</o:PixelsPerInch>
+    			</o:OfficeDocumentSettings>
+    		</xml>
+    	</noscript>
+    	<![endif]-->
+ 	<style type="text/css" media="screen">
+ 		table,
+ 		td,
+ 		div,
+ 		h1,
+ 		p {
+ 			font-family: Inter, sans-serif;
+ 		}
+ 
+ 		@media screen and (max-width: 640px) {
+ 			.general-table {
+ 				width: 90% !important;
+ 				margin: 0 auto !important;
+ 			}
+ 
+ 			.profile-button-desktop {
+ 				display: none !important;
+ 			}
+ 
+ 			.profile-button-mobile {
+ 				display: block !important;
+ 			}
+ 
+ 			.mobile-image-align {
+ 				vertical-align: top !important;
+ 			}
+ 		}
+ 	</style>
+ </head>
+ 
+ <body style=" background: #F4F7FA;">
+ 	<table role="presentation"
+ 		style="margin:0;padding: 0; width:100%;border-collapse:collapse;border:0;border-spacing:0;background: #F4F7FA;">
+ 		<tr>
+ 			<td align="center" style="padding:30px 0;">
+ 				<table class="general-table" role="presentation"
+ 					style="background: #FFFFFF;width:600px;border-collapse:collapse; border-radius: 20px; box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.07);">
+ 					<tr>
+ 						<td>
+ 							<table role="presentation"
+ 								style="width:100%;border-collapse:collapse;border-bottom: 0.5px solid #DAE2E9; border-spacing:0;">
+ 								<tr>
+ 									<td style="width:260px;padding:30px 40px;vertical-align:center;color:#2F3845;">
+ 										<p style="font-size:16px;line-height:24px;font-family:Inter,sans-serif;">
+ 											<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/logo.png"
+ 												alt="logo" width="150" style="height:auto;display:block;" />
+ 										</p>
+ 									</td>
+ 									<td style="width:260px;padding:30px 40px;;vertical-align:center;color:#2F3845"
+ 										align="right">
+ 										<p style="font-size:16px;line-height:24px;font-family:Inter,sans-serif;"><img
+ 												src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/isvar_tr.png"
+ 												alt="logo" width="90" style="height:auto;display:block;" /></p>
+ 									</td>
+ 								</tr>
+ 							</table>
+ 						</td>
+ 					</tr>
+ 					<tr>
+ 						<td style="padding:0;border-bottom: 0.5px solid #DAE2E9;">
+ 							<table role="presentation"
+ 								style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+ 								<tr>
+ 									<td style="width:100%;background-color: #FFF5D9; padding:16px 20px;vertical-align:center;color:#2F3845"
+ 										align="left">
+ 										<p
+ 											style="margin:0 0 8px 0;font-size:24px;line-height:32px;font-family:Inter,sans-serif;color: #1C222B;font-weight: 600;">
+ 											İŞ ALARMI!</p>
+ 										<p
+ 											style="margin:0 0 8px 0;font-size:32px;line-height:40px;font-family:Inter,sans-serif;color: #1C222B;font-weight: 700;">
+ 											$request_count$ yeni ilanınız var.</p>
+ 										<p
+ 											style="margin:0 0 8px 0;font-size:16px;line-height:20px;font-family:Inter,sans-serif;color: #1C222B;font-weight: 400;">
+ 											Tercihlerinizle eşleşen yeni ilanları inceleyin.</p>
+ 									</td>
+ 								</tr>
+ 								<tr>
+ 									<td style="padding:40px;">
+ 										<table role="presentation"
+ 											style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+ 											$loop_start$
+ 											<tr>
+ 												<td style="padding:15px 0 15px 0;border-bottom: 0.5px solid #DAE2E9;">
+ 													<table role="presentation"
+ 														style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+ 														<tr>
+ 															<td class="mobile-image-align"
+ 																style="padding:0;margin:0;color:#2F3845;width: 100px;">
+ 																<a href="https://test.workindo.com/$service_name_url$"
+ 																	style="text-decoration:none;color:#2F3845;">
+ 																	<img src="$firm_photo$" alt="profil image"
+ 																		width="70" height="70"
+ 																		style="margin-right: -15px;display:block;border-radius:100px;" />
+ 																</a>
+ 															</td>
+ 															<td>
+ 																<table>
+ 																	<tr>
+ 																		<td style="padding:0;color:#2F3845">
+ 																			<a href="https://test.workindo.com/$service_name_url$"
+ 																				style="text-decoration:none;color:#2F3845;">
+ 																				<p
+ 																					style="padding: 0; margin: 0 0 5px 0;font-family:İnter,sans-serif;font-weight: 700;font-size: 14px;line-height: 17px;">
+ 																					$firm_name$</p>
+ 																			</a>
+ 																		</td>
+ 																	</tr>
+ 																	<tr>
+ 																		<td style="padding:0;color:#046EFF">
+ 																			<a href="https://test.workindo.com/$service_name_url$"
+ 																				style="text-decoration:none;color:#046EFF;">
+ 																				<p
+ 																					style="padding: 0; margin: 0 0 5px 0;font-family:İnter,sans-serif;font-weight: 700;font-size: 14px;line-height: 17px;">
+ 																					$service_name$</p>
+ 																			</a>
+ 																		</td>
+ 																	</tr>
+ 																	<tr>
+ 																		<td style="padding:0;color:#666666">
+ 																			<p
+ 																				style="padding: 0; margin: 0 0 15px 0;font-family:İnter,sans-serif;font-weight: 400;font-size: 14px;line-height: 14px;">
+ 																				<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/location_icon.png"
+ 																					alt="profil image" width="12"
+ 																					style="height:auto;display:inline-block;" />
+ 																				$location_info$
+ 																			</p>
+ 																		</td>
+ 																	</tr>
+ 																	<tr>
+ 																		<td style="padding:0;color:#666666">
+ 																			<span
+ 																				style="padding: 6px 10px;color: #593E2F; background-color: #FFF5D9;border-radius: 8px;width: 75%; font-family:İnter,sans-serif;font-weight: 400;font-size: 14px;line-height: 14px;">
+ 																				$work_type$
+ 																			</span>
+ 																		</td>
+ 																	</tr>
+ 																</table>
+ 															</td>
+ 															<td align="right" class="profile-button-desktop">
+ 																<table>
+ 																	<tr>
+ 																		<td align="right"
+ 																			style="padding:0;color:#666666">
+ 																			<a href="https://test.workindo.com/tr/giris"
+ 																				style="padding: 0;cursor: pointer; border: none;background-color: transparent; margin: 0 0 15px 0;font-family:İnter,sans-serif;font-weight: 400;font-size: 14px;line-height: 14px;">
+ 																				<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/e-mail-star.png"
+ 																					alt="profil image" width="24"
+ 																					style="height: 24px;;display:inline-block;" />
+ 																			</a>
+ 																		</td>
+ 																	</tr>
+ 																	<tr>
+ 																		<td>
+ 																			<p
+ 																				style="padding:0;color:#999999;font-weight:400;font-size: 12px;line-height: 12px;margin-top: 40px;">
+ 																				$created_date$ gün önce
+ 																			</p>
+ 																		</td>
+ 																	</tr>
+ 																</table>
+ 															</td>
+ 														</tr>
+ 													</table>
+ 												</td>
+ 											</tr>
+ 											$loop_end$
+ 											<tr>
+ 											<tr>
+ 												<td align="center" style="padding:25px 0;">
+ 													<a href="https://test.workindo.com/tr/insaat-is-ilanlari">
+ 													<p style="cursor: pointer;">
+ 														<button
+ 															style="color: #fff;cursor: pointer; border: none;background: #046EFF;;box-sizing: border-box;border-radius: 10px;padding: 8px 75px; font-weight: 400; font-size: 14px; line-height: 14px; font-family:İnter,sans-serif;">Tüm
+ 															İş İlanlarını Gör</button>
+ 													</p>
+ 												</a>
+ 												</td>
+ 											</tr>
+ 								</tr>
+ 								<tr>
+ 									<td style="padding:16px 20px;background-color: #E6F1FF;border-radius: 20px;">
+ 										<table role="presentation"
+ 											style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Inter,sans-serif;">
+ 											<tr>
+ 												<td>
+ 													<table role="presentation"
+ 														style="border-collapse:collapse;border:0;border-spacing:0;">
+ 														<tr>
+ 															<td style="margin:0;padding:0;color:#046EFF;">
+ 																<p
+ 																	style="padding: 0;margin: 0;font-size:16px;line-height:24px;font-family:Inter,sans-serif;">
+ 																	İş başvurularında öne geçmek için profilinizi
+ 																	doldurun.
+ 																</p>
+ 															</td>
+ 														</tr>
+ 														<tr>
+ 															<td style="padding:15px 0 15px 0;">
+ 																<table role="presentation"
+ 																	style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+ 																	<tr>
+ 																		<td align="left"
+ 																			style="padding:0 0 0 0;vertical-align:top;color:#2F3845">
+ 																			<table role="presentation"
+ 																				style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+ 																				<tr>
+ 																					<td class="mobile-image-align"
+ 																						style="padding:0;margin:0;color:#2F3845">
+ 																						<img src="$worker_photo$"
+ 																							alt="profil image"
+ 																							width="70" height="70"
+ 																							style="margin-right: -15px;display:block;border-radius:100px;" />
+ 																					</td>
+ 																					<td>
+ 																						<table
+ 																							style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+ 																							<tr>
+ 																								<td
+ 																									style="padding:0;color:#2F3845">
+ 																									<p
+ 																										style="padding: 0; margin: 0 0 5px 0;font-family:İnter,sans-serif;font-weight: 700;font-size: 16px;line-height: 24px;">
+ 																										$worker_name$
+ 																									</p>
+ 																								</td>
+ 																							</tr>
+ 																							<tr>
+ 																								<td
+ 																									style="padding:0;color:#046EFF">
+ 																									<p
+ 																										style="padding: 0; margin: 0 0 5px 0;font-family:İnter,sans-serif;font-weight: 400;font-size: 16px;line-height: 24px;">
+ 																										$worker_service$
+ 																									</p>
+ 																								</td>
+ 																							</tr>
+ 																							<tr>
+ 																								<td
+ 																									style="padding:0;color:#046EFF">
+ 																									<p
+ 																										style="padding: 0; margin: 0 0 15px 0;font-family:İnter,sans-serif;font-weight: 400;font-size: 14px;line-height: 14px;">
+ 																										<span
+ 																											style="padding:0;color:#046EFF;font-size: 24px;line-height: 32px;font-weight: 700;margin-right: 8px;">%$profile_rate$</span>
+ 																										Profil Gücü
+ 																									</p>
+ 																								</td>
+ 																							</tr>
+ 																						</table>
+ 																					</td>
+ 																				</tr>
+ 																			</table>
+ 																		</td>
+ 																	</tr>
+ 																</table>
+ 															</td>
+ 														</tr>
+ 
+ 													</table>
+ 												</td>
+ 											</tr>
+ 											<tr>
+ 												<td class="profile-button-desktop">
+ 													<a href="https://test.workindo.com/tr/panel/profil">
+ 													<p style="cursor: pointer;">
+ 														<button
+ 															style="border: 1px solid #046EFF;cursor: pointer; width: 100%; background: #FFFFFF;box-sizing: border-box;border-radius: 12px;padding: 8px 16px; font-weight: 400; font-size: 16px; line-height: 24px; font-family:İnter,sans-serif;color:#046EFF;">Profilini
+ 															Güncelle</button>
+ 													</p>
+ 												</a>
+ 												</td>
+ 											</tr>
+ 										</table>
+ 									</td>
+ 								</tr>
+ 							</table>
+ 						</td>
+ 					</tr>
+ 					<tr>
+ 						<td style="padding:40px;">
+ 							<table class="footer-table" role="presentation"
+ 								style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Inter,sans-serif;">
+ 								<tr>
+ 									<td style="padding:0;width:50%;">
+ 										<table role="presentation"
+ 											style="border-collapse:collapse;border:0;border-spacing:0;">
+ 											<tr>
+ 												<td style="margin:0;padding:0 0 21px 0;color:#2F3845;">
+ 													<p
+ 														style="padding: 0;margin: 0;font-size:16px;line-height:24px;font-family:Inter,sans-serif;">
+ 														<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/baret.png"
+ 															alt="baret" width="30" style="height:auto;display:block;" />
+ 													</p>
+ 												</td>
+ 											</tr>
+ 											<tr>
+ 												<td style="margin:0;vertical-align:center;color:#2F3845;">
+ 													<p
+ 														style="color:#2F3845;margin:0;font-size:12px;line-height:16px;font-family:Inter,sans-serif;font-weight:400;">
+ 														Esentepe Mahallesi</p>
+ 													<p
+ 														style="color:#2F3845;margin:0;font-size:12px;line-height:16px;font-family:Inter,sans-serif;font-weight:400;">
+ 														Talat Paşa Cad. NO:5/1</p>
+ 													<p
+ 														style="color:#2F3845;margin:0;font-size:12px;line-height:16px;font-family:Inter,sans-serif;font-weight:700;">
+ 														Şişli/İstanbul</p>
+ 												</td>
+ 											</tr>
+ 										</table>
+ 									</td>
+ 									<td style="padding:0;width:50%;" align="right">
+ 										<table role="presentation"
+ 											style="border-collapse:collapse;border:0;border-spacing:0;">
+ 											<tr>
+ 												<td>
+ 													<table role="presentation"
+ 														style="border-collapse:collapse;border:0;border-spacing:0;">
+ 														<tr>
+ 															<td
+ 																style="margin:0;padding:0 15px 21px 0;color:#2F3845;vertical-align: center;">
+ 																<a href="https://www.facebook.com/workindocom"
+ 																	style="padding: 0;margin: 0;">
+ 																	<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/facebook.png"
+ 																		alt="facebook" width="16"
+ 																		style="height:auto;display:block;" />
+ 																</a>
+ 															</td>
+ 															<td
+ 																style="margin:0;padding:0 15px 21px 0;color:#2F3845;vertical-align: center;">
+ 																<a href="https://www.linkedin.com/company/workindocom style="
+ 																	padding: 0;margin: 0;">
+ 																	<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/linkedin.png"
+ 																		alt="linkedin" width="16"
+ 																		style="height:auto;display:block;" />
+ 																</a>
+ 															</td>
+ 															<td
+ 																style="margin:0;padding:0 15px 21px 0;color:#2F3845;vertical-align: center;">
+ 																<a href="https://twitter.com/workindo"
+ 																	style="padding: 0;margin: 0;">
+ 																	<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/twitter.png"
+ 																		alt="twitter" width="16"
+ 																		style="height:auto;display:block;" />
+ 																</a>
+ 															</td>
+ 															<td
+ 																style="margin:0;padding:0 15px 21px 0;color:#2F3845;vertical-align: center;">
+ 																<a href="https://www.youtube.com/channel/UC9vn7EeuHaF1q8VIIYg9Yjw"
+ 																	style="padding: 0;margin: 0;">
+ 																	<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/youtube.png"
+ 																		alt="youtube" width="16"
+ 																		style="height:auto;display:block;" />
+ 																</a>
+ 															</td>
+ 															<td
+ 																style="margin:0;padding:0 0 21px 0;color:#2F3845; vertical-align: center;">
+ 																<a href="https://www.instagram.com/workindo_tr"
+ 																	style="padding: 0;margin: 0;">
+ 																	<img src="https://s3.eu-central-1.amazonaws.com/cdn-test.workindo.com/static/email-images/instagram.png"
+ 																		alt="instagram" width="16"
+ 																		style="height:auto;display:block;" />
+ 																</a>
+ 															</td>
+ 														</tr>
+ 													</table>
+ 												</td>
+ 											</tr>
+ 											<tr>
+ 												<td style="margin:0;vertical-align:center;color:#2F3845;" align="right">
+ 													<p
+ 														style="color:#2F3845;margin:0;font-size:12px;line-height:16px;font-family:Inter,sans-serif;font-weight:400;">
+ 														info@workindo.com</p>
+ 													<p
+ 														style="color:#2F3845;margin:0;font-size:18px;line-height:18px;font-family:Inter,sans-serif;font-weight:700;">
+ 														0850 724 55 44</p>
+ 												</td>
+ 											</tr>
+ 										</table>
+ 									</td>
+ 								</tr>
+ 							</table>
+ 						</td>
+ 					</tr>
+ 				</table>
+ 			</td>
+ 		</tr>
+ 	</table>
+ </body>
+ 
+ </html>

@@ -3,6 +3,8 @@ import express from 'express';
 import request from 'supertest';
 import IntegrationHelpers from '../helpers/Integration-helpers';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
 import { env } from 'process';
 import { randomUUID } from 'crypto';
 import { ICreateUserDto } from '../../src/components/user/user.types';
@@ -94,6 +96,56 @@ describe('users endpoints', () => {
 
         await request(app).post('/api/users/signup').send(userData).expect(400);
     })
+
+    test('should return 400 if email is not valid', async () => {
+        const userData: ICreateUserDto = {
+            firstName: 'Test',
+            lastName: 'Test',
+            phoneNSN: '+90',
+            phoneNumber: '11122233344',
+            email: 'test',
+            password: 'WWWWWWWWW'
+        };
+
+        await request(app).post('/api/users/signup').send(userData).expect(400);
+    })
+
+    test('should return 400 if credentials are missed', async () => {
+        const userDataList = [
+            {
+                lastName: 'Test2',
+                phoneNSN: '+90',
+                phoneNumber: '11122233344',
+                email: 'test2@test2.com',
+                password: 'qqqWWWeee1',
+            },
+            {
+                firstName: 'Test2',
+                phoneNSN: '+90',
+                phoneNumber: '11122233344',
+                email: 'test2@test2.com',
+                password: 'qqqWWWeee1',
+            },
+            {
+                firstName: 'Test2',
+                lastName: 'Test2',
+                phoneNumber: '11122233344',
+                email: 'test2@test2.com',
+                password: 'qqqWWWeee1',
+            },
+            {
+                firstName: 'Test2',
+                lastName: 'Test2',
+                phoneNSN: '+90',
+                email: 'test2@test2.com',
+                password: 'qqqWWWeee1',
+            },
+        ];
+
+        for (const userData of userDataList) {
+            await request(app).post('/api/users/signup').send(userData).expect(400);
+        }
+    });
     // END OF SIGN-UP USER
 
     // START OF LOGIN USER
@@ -185,4 +237,48 @@ describe('users endpoints', () => {
             .expect(200);
     })
     // END OF GET USER LIST
+
+    // START OF UPLOADING PROFILE PICTURE
+    test('returns 200 after uploaded pp', async () => {
+        const response = await request(app)
+            .post('/api/users/avatar')
+            .set('Authorization', `Bearer ${testToken}`)
+            .set('Content-Type', 'multipart/form-data')
+            .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/test.jpeg')), { filename: 'test.jpeg' });
+
+        expect(response.status).toBe(200);
+        const uploadedFilePath = path.resolve(__dirname, '../..', 'uploads/profile-pictures');
+        console.log(uploadedFilePath);
+        const file = fs.readdirSync(uploadedFilePath).filter((file) => file.includes(testId))[0]
+        expect(fs.existsSync(path.join(uploadedFilePath, file))).toBe(true);
+
+        fs.unlinkSync(path.join(uploadedFilePath, file));
+    })
+
+    test('returns 401 if unauthorized while uploading picture', async () => {
+        await request(app)
+            .post('/api/users/avatar')
+            .set('Content-Type', 'multipart/form-data')
+            .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/test.jpeg')), { filename: 'test.jpeg' })
+            .expect(401);
+    })
+
+    test('returns 400 upload unexpected file type', async () => {
+        await request(app)
+            .post('/api/users/avatar')
+            .set('Content-Type', 'multipart/form-data')
+            .set('Authorization', `Bearer ${testToken}`)
+            .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/testText.txt')), { filename: 'testText.txt' })
+            .expect(400);
+    })
+
+    test('returns 400 upload picture size more than 1mb', async () => {
+        await request(app)
+            .post('/api/users/avatar')
+            .set('Content-Type', 'multipart/form-data')
+            .set('Authorization', `Bearer ${testToken}`)
+            .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/moreThan1mb.jpg')), { filename: 'moreThan1mb.jpg' })
+            .expect(400);
+    })
+    // END OF UPLOADING PROFILE PICTURE
 });
