@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { db } from '../../db.server';
 import utils from '../../utils/passwordUtils';
 import { getUserFields } from '../../utils/userUtils';
+import ApiError from '../../abstractions/ApiError';
 import { ICreateUserDto, ISignUpResponse, IGetUserDto } from './user.types';
 
 export const listUsers = async (): Promise<IGetUserDto[]> =>
@@ -28,7 +29,7 @@ export const signUpUser = async (
 		},
 	});
 	if (userTest) {
-		throw new Error('User Already exists');
+		throw new ApiError('User Already exists', 400);
 	}
 	utils.isPasswordSafe(user.password);
 	const password = await bcrypt.hash(user.password, 8);
@@ -69,7 +70,7 @@ export const loginUser = async (
 		},
 	});
 	if (!user) {
-		throw new Error('No user');
+		throw new ApiError('No user', 400);
 	}
 
 	user = await db.user.update({
@@ -80,7 +81,7 @@ export const loginUser = async (
 	});
 	const valid = await bcrypt.compare(password, user.password);
 	if (!valid) {
-		throw new Error('Invalid password');
+		throw new ApiError('Invalid password', 400);
 	}
 	return {
 		user,

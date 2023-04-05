@@ -14,7 +14,12 @@ export default class UserController extends BaseApi {
 		this.router.get('/:id', auth, this.getUser.bind(this));
 		this.router.post('/signup', this.signUpUser.bind(this));
 		this.router.post('/login', this.loginUser.bind(this));
-		this.router.post('/avatar', auth, uploadProfilePicture(1000000).single('avatar'), this.uploadProfilePicture.bind(this));
+		this.router.post(
+			'/avatar',
+			auth,
+			uploadProfilePicture(1000000).single('avatar'),
+			this.uploadProfilePicture.bind(this),
+		);
 		return this.router;
 	}
 
