@@ -35,8 +35,7 @@ export default class UserController extends BaseApi {
 			// call base class method
 			super.send(res);
 		} catch (err) {
-			res.locals.data = err;
-			super.send(res, 400);
+			next(err);
 		}
 	}
 
@@ -58,8 +57,7 @@ export default class UserController extends BaseApi {
 			}
 			super.send(res, 404);
 		} catch (err) {
-			res.locals.data = err;
-			super.send(res, 400);
+			next(err);
 		}
 	}
 
@@ -80,8 +78,7 @@ export default class UserController extends BaseApi {
 			}
 			super.send(res, 404);
 		} catch (err) {
-			res.locals.data = err;
-			super.send(res, 400);
+			next(err);
 		}
 	}
 
@@ -111,8 +108,7 @@ export default class UserController extends BaseApi {
 			}
 			super.send(res, 400);
 		} catch (err) {
-			res.locals.data = err;
-			super.send(res, 400);
+			next(err);
 		}
 	}
 
@@ -143,8 +139,7 @@ export default class UserController extends BaseApi {
 			}
 			super.send(res, 400);
 		} catch (err) {
-			res.locals.data = err;
-			super.send(res, 400);
+			next(err);
 		}
 	}
 
@@ -168,8 +163,7 @@ export default class UserController extends BaseApi {
 			}
 			super.send(res, 400);
 		} catch (err) {
-			res.locals.data = err;
-			super.send(res, 400);
+			next(err);
 		}
 	}
 }
