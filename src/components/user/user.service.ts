@@ -3,19 +3,12 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { db } from '../../db.server';
 import utils from '../../utils/passwordUtils';
+import { getUserFields } from '../../utils/userUtils';
 import { ICreateUserDto, ISignUpResponse, IGetUserDto } from './user.types';
 
 export const listUsers = async (): Promise<IGetUserDto[]> =>
 	db.user.findMany({
-		select: {
-			id: true,
-			firstName: true,
-			lastName: true,
-			email: true,
-			phoneNSN: true,
-			phoneNumber: true,
-			createdAt: true,
-		},
+		select: getUserFields(),
 	});
 
 export const getUser = async (id: string): Promise<IGetUserDto> =>
@@ -23,15 +16,7 @@ export const getUser = async (id: string): Promise<IGetUserDto> =>
 		where: {
 			id,
 		},
-		select: {
-			id: true,
-			firstName: true,
-			lastName: true,
-			email: true,
-			phoneNSN: true,
-			phoneNumber: true,
-			createdAt: true,
-		},
+		select: getUserFields(),
 	});
 
 export const signUpUser = async (
@@ -103,4 +88,20 @@ export const loginUser = async (
 			expiresIn: '2d',
 		}),
 	};
+};
+
+export const uploadProfilePicture = async (
+	picturePath: string,
+	user: IGetUserDto,
+): Promise<boolean> => {
+	const updatedUser = await db.user.update({
+		where: {
+			id: user.id,
+		},
+		data: {
+			picturePath,
+		},
+	});
+	if (updatedUser) return true;
+	return false;
 };

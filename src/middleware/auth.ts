@@ -2,6 +2,7 @@ import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { IGetUserDto } from '../components/user/user.types';
 import { db } from '../db.server';
+import { getUserFields } from '../utils/userUtils';
 import { AuthRequest } from './interfaces/auth-types';
 
 const auth = async (req: AuthRequest, res: Response, next: NextFunction) => {
@@ -12,15 +13,7 @@ const auth = async (req: AuthRequest, res: Response, next: NextFunction) => {
 			where: {
 				id: decoded.userId,
 			},
-			select: {
-				id: true,
-				firstName: true,
-				lastName: true,
-				phoneNSN: true,
-				phoneNumber: true,
-				email: true,
-				createdAt: true,
-			},
+			select: getUserFields(),
 		});
 
 		if (!user) throw new Error('User not found');

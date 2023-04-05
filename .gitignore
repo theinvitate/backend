@@ -10,7 +10,7 @@ coverage/coverage-final.json
 coverage/clover.xml
 /.nyc_output/
 logs/
-
+uploads/
 # lock files
 package-lock.json
 

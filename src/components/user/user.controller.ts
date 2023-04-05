@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import auth from '../../middleware/auth';
 import { AuthRequest } from '../../middleware/interfaces/auth-types';
+import { uploadProfilePicture } from '../../middleware/upload';
 import { validateLogin, validateSignUp } from '../../validators/user-validations';
 import BaseApi from '../BaseApi';
 import * as UserService from './user.service';
@@ -13,9 +14,11 @@ export default class UserController extends BaseApi {
 		this.router.get('/:id', auth, this.getUser.bind(this));
 		this.router.post('/signup', this.signUpUser.bind(this));
 		this.router.post('/login', this.loginUser.bind(this));
+		this.router.post('/avatar', auth, uploadProfilePicture(1000000).single('avatar'), this.uploadProfilePicture.bind(this));
 		return this.router;
 	}
 
+	/* eslint-disable consistent-return */
 	/**
 	 * @param req
 	 * @param res
@@ -32,11 +35,11 @@ export default class UserController extends BaseApi {
 			// call base class method
 			super.send(res);
 		} catch (err) {
-			next(err);
+			res.locals.data = err;
+			super.send(res, 400);
 		}
 	}
 
-	/* eslint-disable consistent-return */
 	/**
 	 * @param req
 	 * @param res
@@ -53,9 +56,10 @@ export default class UserController extends BaseApi {
 				res.locals.data = user;
 				return super.send(res);
 			}
-			return super.send(res, 404);
+			super.send(res, 404);
 		} catch (err) {
-			next(err);
+			res.locals.data = err;
+			super.send(res, 400);
 		}
 	}
 
@@ -74,9 +78,10 @@ export default class UserController extends BaseApi {
 				res.locals.data = req.user;
 				return super.send(res);
 			}
-			return super.send(res, 404);
+			super.send(res, 404);
 		} catch (err) {
-			next(err);
+			res.locals.data = err;
+			super.send(res, 400);
 		}
 	}
 
@@ -104,12 +109,10 @@ export default class UserController extends BaseApi {
 				// call base class method
 				return super.send(res, 201);
 			}
-			return super.send(res, 400);
+			super.send(res, 400);
 		} catch (err) {
-			if (err.message === 'User Already exists') {
-				return super.send(res, 400);
-			}
-			next(err);
+			res.locals.data = err;
+			super.send(res, 400);
 		}
 	}
 
@@ -126,6 +129,7 @@ export default class UserController extends BaseApi {
 		try {
 			const { error, value } = validateLogin(req.body);
 			if (error) {
+				res.locals.data = error.details;
 				return super.send(res, 400);
 			}
 			const user = await UserService.loginUser(
@@ -137,16 +141,36 @@ export default class UserController extends BaseApi {
 				// call base class method
 				return super.send(res);
 			}
-			return super.send(res, 400);
+			super.send(res, 400);
 		} catch (err) {
-			if (
-				err.message === 'No user' ||
-				err.message === 'Invalid password'
-			) {
-				return super.send(res, 400);
-			}
-			next(err);
+			res.locals.data = err;
+			super.send(res, 400);
 		}
 	}
-	/* eslint-enable consistent-return */
+
+	/**
+	 * @param req
+	 * @param res
+	 * @param next
+	 */
+	public async uploadProfilePicture(
+		req: AuthRequest,
+		res: Response,
+		next: NextFunction,
+	): Promise<void> {
+		try {
+			const response = await UserService.uploadProfilePicture(
+				req.file.path,
+				req.user,
+			);
+			if (response) {
+				return super.send(res, 200);
+			}
+			super.send(res, 400);
+		} catch (err) {
+			res.locals.data = err;
+			super.send(res, 400);
+		}
+	}
 }
+/* eslint-enable consistent-return */
