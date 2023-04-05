@@ -1,10 +1,10 @@
 import { env } from 'process';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import ApiError from '../../abstractions/ApiError';
 import { db } from '../../db.server';
 import utils from '../../utils/passwordUtils';
 import { getUserFields } from '../../utils/userUtils';
-import ApiError from '../../abstractions/ApiError';
 import { ICreateUserDto, ISignUpResponse, IGetUserDto } from './user.types';
 
 export const listUsers = async (): Promise<IGetUserDto[]> =>
