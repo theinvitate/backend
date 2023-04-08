@@ -2,7 +2,10 @@ import { NextFunction, Request, Response, Router } from 'express';
 import auth from '../../middleware/auth';
 import { AuthRequest } from '../../middleware/interfaces/auth-types';
 import { uploadProfilePicture } from '../../middleware/upload';
-import { validateLogin, validateSignUp } from '../../validators/user-validations';
+import {
+	validateLogin,
+	validateSignUp,
+} from '../../validators/user-validations';
 import BaseApi from '../BaseApi';
 import * as UserService from './user.service';
 import { ICreateUserDto } from './user.types';

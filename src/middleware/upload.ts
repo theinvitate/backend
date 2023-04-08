@@ -53,7 +53,9 @@ function uploadProfilePicture(fileSizeLimit: number): multer.Multer {
 					.replace('.', '');
 				if (!supportedFileExtensions.includes(fileExtension)) {
 					throw new ApiError(
-						`Unsupported file type. Please upload an image file with one of the following extensions: ${supportedFileExtensions.join(', ',)}.`,
+						`Unsupported file type. Please upload an image file with one of the following extensions: ${supportedFileExtensions.join(
+							', ',
+						)}.`,
 						400,
 					);
 				}
