@@ -7,6 +7,7 @@ export interface IGetUserDto {
 	phoneNSN: string;
 	phoneNumber: string;
 	email: string;
+	picturePath: string;
 	createdAt: Date;
 }
 

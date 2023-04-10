@@ -8,9 +8,10 @@ logs
 coverage/lcov-report
 coverage/coverage-final.json
 coverage/clover.xml
+coverage/lcov.info
 /.nyc_output/
 logs/
-
+uploads/
 # lock files
 package-lock.json
 

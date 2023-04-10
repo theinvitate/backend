@@ -74,6 +74,7 @@ model User {
   firstName                String
   lastName                 String
   password                 String
+  picturePath              String?
   lastLogin                DateTime?
   resetPasswordToken       String
   dateResetPasswordRequest DateTime?

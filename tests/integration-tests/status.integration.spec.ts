@@ -8,9 +8,16 @@ import IntegrationHelpers from '../helpers/Integration-helpers';
 
 describe('status integration tests', () => {
     let app: express.Application;
-    const contentType: string = JSON.parse(process.env.APPLY_ENCRYPTION) ? 'text/html; charset=utf-8' : 'application/json; charset=utf-8';
+    const applyEncryption = process.env.APPLY_ENCRYPTION;
+    let parsedEncryption;
+    if (applyEncryption !== undefined) {
+        parsedEncryption = JSON.parse(applyEncryption);
+    } else {
+        parsedEncryption = 'false'
+    }
+    const contentType: string = parsedEncryption ? 'text/html; charset=utf-8' : 'application/json; charset=utf-8';
 
-    beforeAll(async() => {
+    beforeAll(async () => {
         app = await IntegrationHelpers.getApp();
     });
 

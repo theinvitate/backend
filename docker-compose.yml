@@ -1,21 +1,28 @@
 version: '3.8'
 
 services:
-    dev:
-      build: .
-      command: npm start
-      volumes:
-        - .:/usr/app/
-        - /usr/app/node_modules
-      ports:
-        - "3146:3146"
+  dev:
+    build: .
+    command: npm start
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    environment:
+      NODE_ENV: local
+      PORT: 3146
+      BASE_URL: http://localhost:3146
+      APPLY_ENCRYPTION: false
+      JWT_SECRET: eheheeh111
+      DATABASE_URL: postgresql://testtest:example@db:5432/theinvitate?schema=public
+    ports:
+      - "3146:3146"
 
-    db:
-      image: postgres
-      restart: always
-      environment:
-        POSTGRES_PASSWORD: example
-        POSTGRES_USER: testtest
-        POSTGRES_DB: theinvitate
-      ports:
-        - "5432:5432"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: testtest
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: theinvitate
+    ports:
+      - "5433:5432"
