@@ -49,7 +49,7 @@ describe('users endpoints', () => {
             password: 'password!'
         }
 
-        const response = await request(app).post(route + 'signup')
+        const response = await request(app).post(`${route}signup`)
             .send(createUserDto)
             .expect(201);
 
@@ -81,7 +81,7 @@ describe('users endpoints', () => {
             password: 'qqqWWWeee1'
         };
 
-        await request(app).post(route + 'signup').send(userData).expect(400);
+        await request(app).post(`${route}signup`).send(userData).expect(400);
     });
 
     test('should return 400 if password is not strong enough', async () => {
@@ -94,7 +94,7 @@ describe('users endpoints', () => {
             password: 'WWWWWWWWW'
         };
 
-        await request(app).post(route + 'signup').send(userData).expect(400);
+        await request(app).post(`${route}signup`).send(userData).expect(400);
     })
 
     test('should return 400 if email is not valid', async () => {
@@ -107,7 +107,7 @@ describe('users endpoints', () => {
             password: 'WWWWWWWWW'
         };
 
-        await request(app).post(route + 'signup').send(userData).expect(400);
+        await request(app).post(`${route}signup`).send(userData).expect(400);
     })
 
     test('should return 400 if credentials are missed', async () => {
@@ -143,7 +143,7 @@ describe('users endpoints', () => {
         ];
 
         for (const userData of userDataList) {
-            await request(app).post(route + 'signup').send(userData).expect(400);
+            await request(app).post(`${route}signup`).send(userData).expect(400);
         }
     });
     // END OF SIGN-UP USER
@@ -151,7 +151,7 @@ describe('users endpoints', () => {
     // START OF LOGIN USER
     test('returns 200 and a JWT token when valid credentials are provided', async () => {
         const response = await request(app)
-            .post(route + 'login')
+            .post(`${route}login`)
             .send({
                 email: 'test@test.com',
                 password: 'password!',
@@ -165,7 +165,7 @@ describe('users endpoints', () => {
 
     test('returns 400 when invalid credentials are provided', async () => {
         const response = await request(app)
-            .post(route + 'login')
+            .post(`${route}login`)
             .send({
                 email: 'test@test.com',
                 password: 'incorrectpassword',
@@ -173,7 +173,7 @@ describe('users endpoints', () => {
             .expect(400);
 
         await request(app)
-            .post(route + 'login')
+            .post(`${route}login`)
             .send({
                 email: 'testt@testt.com',
                 password: 'incorrectpassword',
@@ -187,7 +187,7 @@ describe('users endpoints', () => {
     // GET SIGNED IN USER
     test('returns 200 and the user which signed in', async () => {
         const response = await request(app)
-            .get(route + 'me')
+            .get(`${route}me`)
             .set('Authorization', `Bearer ${testToken}`)
             .send()
             .expect(200);
@@ -198,7 +198,7 @@ describe('users endpoints', () => {
 
     test('returns 404 not found', async () => {
         await request(app)
-            .get(route + 'me')
+            .get(`${route}me`)
             .set('Authorization', `Bearer ${wrongToken}`)
             .send()
             .expect(401);
@@ -206,7 +206,7 @@ describe('users endpoints', () => {
 
     test('returns 401 unauthorized', async () => {
         await request(app)
-            .get(route + 'me')
+            .get(`${route}me`)
             .send()
             .expect(401);
     })
@@ -215,7 +215,7 @@ describe('users endpoints', () => {
     // START OF GET A USER BY ID
     test('returns 200 and the user which owns the sent id', async () => {
         await request(app)
-            .get(route + testId)
+            .get(`${route}${testId}`)
             .set('Authorization', `Bearer ${testToken}`)
             .send()
             .expect(200);
@@ -223,7 +223,7 @@ describe('users endpoints', () => {
 
     test('returns 401 unauthorized', async () => {
         await request(app)
-            .get(route + testId)
+            .get(`${route}${testId}`)
             .send()
             .expect(401);
     })
@@ -241,7 +241,7 @@ describe('users endpoints', () => {
     // START OF UPLOADING PROFILE PICTURE
     test('returns 200 after uploaded pp', async () => {
         const response = await request(app)
-            .post(route + 'avatar')
+            .post(`${route}avatar`)
             .set('Authorization', `Bearer ${testToken}`)
             .set('Content-Type', 'multipart/form-data')
             .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/test.jpeg')), { filename: 'test.jpeg' });
@@ -257,7 +257,7 @@ describe('users endpoints', () => {
 
     test('returns 401 if unauthorized while uploading picture', async () => {
         await request(app)
-            .post(route + 'avatar')
+            .post(`${route}avatar`)
             .set('Content-Type', 'multipart/form-data')
             .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/test.jpeg')), { filename: 'test.jpeg' })
             .expect(401);
@@ -265,7 +265,7 @@ describe('users endpoints', () => {
 
     test('returns 400 upload unexpected file type', async () => {
         await request(app)
-            .post(route + 'avatar')
+            .post(`${route}avatar`)
             .set('Content-Type', 'multipart/form-data')
             .set('Authorization', `Bearer ${testToken}`)
             .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/testText.txt')), { filename: 'testText.txt' })
@@ -274,7 +274,7 @@ describe('users endpoints', () => {
 
     test('returns 400 upload picture size more than 1mb', async () => {
         await request(app)
-            .post(route + 'avatar')
+            .post(`${route}avatar`)
             .set('Content-Type', 'multipart/form-data')
             .set('Authorization', `Bearer ${testToken}`)
             .attach('avatar', fs.readFileSync(path.resolve(__dirname, '../helpers/testDocs/moreThan1mb.jpg')), { filename: 'moreThan1mb.jpg' })
